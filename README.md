@@ -5,7 +5,7 @@
 ###### A simple JSON wrapper for the Exchange Web Services (EWS) SOAP API
 
 ```
-npm install node-ews
+npm install @bugabuga/node-ews
 ```
 
 #### Updates in 3.4.0 (new)
@@ -17,7 +17,7 @@ npm install node-ews
 - Code cleanup
 
 #### About
-A extension of node-soap with ntlm-client to make queries to Microsoft's Exchange
+A extension of node-soap with httpntlm to make queries to Microsoft's Exchange
 Web Service API work. Utilize node-soap for json to xml query processing and
 returns responses as json objects.
 
@@ -344,6 +344,31 @@ ews.run(ewsFunction, ewsArgs, ewsSoapHeader)
     console.log(err.stack);
   });
 
+```
+
+#### Use Encrypted Credentials for NTLM:
+This allows you to persist their password as separate hashes instead of as plain text.
+This utilizes the [options](https://github.com/SamDecrock/node-http-ntlm#options) available to the underlying NTLM lib.
+[Here](https://github.com/SamDecrock/node-http-ntlm#pre-encrypt-the-password) is an example from its README.
+Below is an example for this lib:
+```js
+const NTLMAuth = require('httpntlm').ntlm;
+const passwordPlainText = 'mypassword';
+
+// store the ntHashedPassword and lmHashedPassword to reuse later for reconnecting
+const ntHashedPassword = NTLMAuth.create_NT_hashed_password(passwordPlainText);
+const lmHashedPassword = NTLMAuth.create_LM_hashed_password(passwordPlainText);
+
+// exchange server connection info
+const ewsConfig = {
+    username: 'myuser@domain.com',
+    nt_password: ntHashedPassword,
+    lm_password: lmHashedPassword,
+    host: 'https://ews.domain.com'
+};
+
+// initialize node-ews
+const ews = new EWS(ewsConfig);
 ```
 
 #### Enable Basic Auth instead of NTLM:

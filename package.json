@@ -1,6 +1,6 @@
 {
-  "name": "node-ews-client",
-  "version": "3.5.0",
+  "name": "@bugabuga/node-ews",
+  "version": "3.6.1",
   "description": "A simple JSON wrapper for the Exchange Web Services (EWS) SOAP API",
   "main": "./index.js",
   "scripts": {
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nmarus/node-ews.git"
+    "url": "git+https://github.com/BugaBugan/node-ews.git"
   },
   "keywords": [
     "node",
@@ -32,7 +32,7 @@
     "json"
   ],
   "bugs": {
-    "url": "https://github.com/nmarus/node-ews/issues"
+    "url": "https://github.com/BugaBugan/node-ews/issues"
   },
-  "homepage": "https://github.com/nmarus/node-ews#readme"
+  "homepage": "https://github.com/BugaBugan/node-ews#readme"
 }
